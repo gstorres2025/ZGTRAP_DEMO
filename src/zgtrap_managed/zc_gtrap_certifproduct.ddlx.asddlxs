@@ -1,0 +1,90 @@
+@Metadata.layer: #CUSTOMER
+
+@UI: { headerInfo: {
+    typeName: 'Certificado',
+    typeNamePlural: 'Certificados',
+    imageUrl: 'Icon',
+    title: { label: 'Certificado', value: 'Matnr', type: #STANDARD }
+} }
+
+
+annotate entity ZC_GTRAP_CERTIFPRODUCT with
+{
+
+  @UI.facet: [
+    { purpose: #HEADER,
+      type: #FIELDGROUP_REFERENCE,
+      importance: #HIGH,
+      position: 1,
+      label: 'Informaçoes Técnicas',
+      targetQualifier: 'HeaderData'
+    },{
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Gerenciamento do Certificado',
+      position: 10
+   },{
+      id: 'Certificate',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      importance: #HIGH,
+      position: 20,
+      targetQualifier: 'Detail',
+      label: 'Detalhes'
+   },{
+      id: 'CertificateState',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Status changes',
+      position: 30,
+      targetElement: '_Stats'
+   }]
+
+
+  @UI.hidden: true
+  CertUuid;
+
+  @UI.selectionField: [{ position: 20 }] //filtro
+  @UI.lineItem: [{ position: 20 }]       //aparecer na grid inicial
+  @UI.identification: [{ position: 20 }] //aparecer no bloco de edição
+  @EndUserText.label: 'Material'         //texto da label
+  Matnr;
+
+  @UI.selectionField: [{ position: 30 }]       //filtro
+  @UI.lineItem: [{ position: 30 }]             //aparecer na grid inicial
+  @UI.fieldGroup: [{ qualifier: 'Detail'}]    //aparecer no bloco 'Detail'
+  @UI.identification: [{ position: 30 }]      //aparecer no bloco de edição
+  @EndUserText.label: 'Descrição'             //texto da label
+  Description;
+
+  @UI.selectionField: [{ position: 40 }]       //filtro
+  @UI.identification: [{ position: 40 }]       //aparecer no bloco de edição
+  @UI.fieldGroup: [{ qualifier: 'HeaderData'}] //aparecer na header
+  @EndUserText.label: 'Versão'                 //texto da label
+  Version;
+
+  @UI.identification: [{ position: 50 }]
+  @EndUserText.label: 'Certificado CE'
+  CertCe;
+
+  @UI.identification: [{ position: 60 }]
+  @EndUserText.label: 'Certificado GS'
+  CertGs;
+
+  @UI.identification: [{ position: 70 }]
+  @EndUserText.label: 'Certificado FCC'
+  CertFcc;
+
+  @UI.identification: [{ position: 80 }]
+  @EndUserText.label: 'Certificado ISO'
+  CertIso;
+
+  @UI.identification: [{ position: 90 }]
+  @EndUserText.label: 'Certificado TUEV'
+  CertTuev;
+
+  @UI.identification: [{ position: 100 }]
+  @EndUserText.label: 'Última modificação'
+  LocalLastChangedAt;
+
+}
